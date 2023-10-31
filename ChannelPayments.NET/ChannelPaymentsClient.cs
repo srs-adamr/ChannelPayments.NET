@@ -1,11 +1,9 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
-using System.Net.Http.Json;
 using System.Security.Cryptography;
 using System.Text.Json;
 using ChannelPayments.NET.Models;
 using Microsoft.IdentityModel.Tokens;
 using RestSharp;
-using RestSharp.Serializers.Json;
 
 namespace ChannelPayments.NET
 {
@@ -58,12 +56,7 @@ namespace ChannelPayments.NET
                     ThrowOnAnyError = true,
                     BaseUrl = new Uri(baseUrl)
 
-                },
-                configureSerialization: s => s.UseSystemTextJson(new JsonSerializerOptions
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                    WriteIndented = true
-                })
+                }
             );
 
             var request = new RestRequest("", Method.Get);
